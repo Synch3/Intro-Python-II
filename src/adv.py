@@ -54,7 +54,17 @@ player1 = Player(room['outside'])
 running = True
 
 while running:
-    print(player1.room)
-    print(player1.description)
+    print(player1.room.name)
+    print(player1.room.description)
     command = input("$")
+    if command.lower() in ["n", "s", "e", "w"]:
+        concatenated = command + '_to'
+        if hasattr(player1.room, concatenated):
+            player1.room = getattr(player1.room, concatenated)
+        else:
+            print('You can\'t go that way!')
+    elif command.lower() in ["q"]:
+        running = False
+
+            
     
