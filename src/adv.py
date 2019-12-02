@@ -56,15 +56,40 @@ running = True
 while running:
     print(player1.room.name)
     print(player1.room.description)
-    command = input("$")
-    if command.lower() in ["n", "s", "e", "w"]:
-        concatenated = command + '_to'
-        if hasattr(player1.room, concatenated):
-            player1.room = getattr(player1.room, concatenated)
+    rawcommand = input("$")
+    command = rawcommand.split('')
+    if len(command) is 1:
+
+        if command.lower() in ["n", "s", "e", "w"]:
+            concatenated = command + '_to'
+            if hasattr(player1.room, concatenated):
+                player1.room = getattr(player1.room, concatenated)
+            else:
+                print('You can\'t go that way!')
+
+        elif command.lower() in ["q"]:
+            running = False
+
+        elif command.lower() is 'look':
+            print(player1.room.name)
+            print(player1.room.description)
+
+        elif command.lower is 'get':
+            print("What are you trying to get?")
+
+        elif command.lower is 'drop':
+            print("What are you trying to drop?")
+        
         else:
-            print('You can\'t go that way!')
-    elif command.lower() in ["q"]:
-        running = False
+            print('I don\'t understand what you are trying to do. Type help for a list of valid commands.')
+
+
+    elif len(command) is 2:
+        if command.lower[0] is 'look':
+            if player1.items.find(command.lower[1]) is not -1:
+                print(player1.items.index(command.lower[1]).description)
+            else:
+                print('No items.')
 
             
     
